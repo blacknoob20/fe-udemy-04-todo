@@ -4,6 +4,7 @@ import { todoList } from "../index";
 // Referencias en el HTML
 const divTodoList = document.querySelector('.todo-list');
 const txtInput    = document.querySelector('.new-todo') ;
+const btnBorrar   = document.querySelector('.clear-completed') ;
 
 export const crearTodoHtml = (todo) => {
     const div = document.createElement('div');
@@ -46,5 +47,17 @@ divTodoList.addEventListener('click', (evt) => {
     } else if(nombreElemento.includes('button')){
         todoList.eliminarTodo(id);
         divTodoList.removeChild(todoElElemento);
+    }
+});
+
+btnBorrar.addEventListener('click', () => {
+    todoList.eliminarCompletados();
+
+    for (let i = divTodoList.children.length -1; i >= 0; i--) {
+        const element = divTodoList.children[i];
+        
+        if (element.classList.contains('completed')) {
+            divTodoList.removeChild(element);
+        }
     }
 });
