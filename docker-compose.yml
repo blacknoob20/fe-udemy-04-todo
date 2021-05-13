@@ -1,0 +1,18 @@
+version: '2.2'
+services:
+  php:
+    container_name: webpack
+    image: node:alpine
+    #cpuset: '1'
+    #mem_limit: 512m
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - $PWD/:/root/webpack
+    networks:
+      - net
+    ports:
+      - '80:80'
+      - '8080:8080'
+networks:
+  net:
