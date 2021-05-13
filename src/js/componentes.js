@@ -32,3 +32,19 @@ txtInput.addEventListener('keyup', (evt)=>{
         txtInput.value = '';
     }
 });
+
+divTodoList.addEventListener('click', (evt) => {
+    const nombreElemento = evt.target.localName;
+    const todoElElemento = evt.target.parentElement.parentElement;
+    const id = todoElElemento.getAttribute('data-id');
+
+    console.log(nombreElemento.includes('input'));
+
+    if(nombreElemento.includes('input')){
+        todoList.marcarCompletado(id);
+        todoElElemento.classList.toggle('completado');
+    } else if(nombreElemento.includes('button')){
+        todoList.eliminarTodo(id);
+        divTodoList.removeChild(todoElElemento);
+    }
+});
