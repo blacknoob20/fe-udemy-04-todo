@@ -1,5 +1,9 @@
+import { Todo } from "../classes";
+import { todoList } from "../index";
+
 // Referencias en el HTML
 const divTodoList = document.querySelector('.todo-list');
+const txtInput    = document.querySelector('.new-todo') ;
 
 export const crearTodoHtml = (todo) => {
     const div = document.createElement('div');
@@ -18,3 +22,13 @@ export const crearTodoHtml = (todo) => {
 
     return div;
 }
+
+txtInput.addEventListener('keyup', (evt)=>{
+    if(evt.keyCode === 13 && txtInput.value.length > 0){
+        const nuevoTodo = new Todo(txtInput.value);
+
+        todoList.nuevoTodo(nuevoTodo);
+        crearTodoHtml(nuevoTodo);
+        txtInput.value = '';
+    }
+});
